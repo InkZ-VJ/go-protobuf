@@ -1,0 +1,62 @@
+{
+  "id": "3f443824-45f0-4e52-a0bb-96b61905a14a",
+  "brand": "Apple",
+  "name": "Macbook Air",
+  "cpu": {
+    "brand": "Intel",
+    "name": "Core i9-9980HK",
+    "number_cors": 5,
+    "number_threads": 7,
+    "min_ghz": 3.3781786294064364,
+    "max_ghz": 4.633811328362152
+  },
+  "ram": {
+    "value": "20",
+    "unit": "GIGABYTE"
+  },
+  "gpus": [
+    {
+      "brand": "Nvidia",
+      "name": "GTX 1660-Ti",
+      "min_ghz": 1.586047263538654,
+      "max_ghz": 4.034101166785771,
+      "memory": {
+        "value": "3",
+        "unit": "GIGABYTE"
+      }
+    }
+  ],
+  "storages": [
+    {
+      "driver": "SSD",
+      "memory": {
+        "value": "566",
+        "unit": "GIGABYTE"
+      }
+    },
+    {
+      "driver": "HDD",
+      "memory": {
+        "value": "1",
+        "unit": "TERABYTE"
+      }
+    }
+  ],
+  "screen": {
+    "size_inch": 15.055601,
+    "resolution": {
+      "width": 6536,
+      "height": 3677
+    },
+    "panel": "IPS",
+    "multitouch": true
+  },
+  "keyboard": {
+    "layout": "QUERTZ",
+    "backlit": true
+  },
+  "weight_kg": 1.0043900013597489,
+  "price_usd": 1536.3894003515663,
+  "release_year": 2016,
+  "updated_at": "2024-06-04T07:26:26.699293518Z"
+}
