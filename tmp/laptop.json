@@ -1,14 +1,14 @@
 {
-  "id": "39c44986-3a89-414d-bd19-c632234b2be6",
+  "id": "8747a55b-836c-4b3c-81c3-019fdbededb8",
   "brand": "Lenovo",
   "name": "Thinkpad X1",
   "cpu": {
     "brand": "Intel",
-    "name": "Core i3-1005G1",
-    "number_cors": 5,
-    "number_threads": 7,
-    "min_ghz": 3.2497396413922024,
-    "max_ghz": 4.554480080602936
+    "name": "Core i9-9980HK",
+    "number_cors": 4,
+    "number_threads": 11,
+    "min_ghz": 2.72598968742572,
+    "max_ghz": 3.58317272110849
   },
   "ram": {
     "value": "36",
@@ -17,9 +17,9 @@
   "gpus": [
     {
       "brand": "AMD",
-      "name": "RX 580",
-      "min_ghz": 1.5865548446444753,
-      "max_ghz": 2.3967193562969054,
+      "name": "RX Vega-56",
+      "min_ghz": 2.041720491082172,
+      "max_ghz": 3.925666893512161,
       "memory": {
         "value": "3",
         "unit": "GIGABYTE"
@@ -30,33 +30,33 @@
     {
       "driver": "SSD",
       "memory": {
-        "value": "231",
+        "value": "375",
         "unit": "GIGABYTE"
       }
     },
     {
       "driver": "HDD",
       "memory": {
-        "value": "5",
+        "value": "6",
         "unit": "TERABYTE"
       }
     }
   ],
   "screen": {
-    "size_inch": 14.065404,
+    "size_inch": 15.833314,
     "resolution": {
-      "width": 4033,
-      "height": 2269
+      "width": 5301,
+      "height": 2982
     },
     "panel": "IPS",
-    "multitouch": true
+    "multitouch": false
   },
   "keyboard": {
     "layout": "AZERTY",
     "backlit": false
   },
-  "weight_kg": 1.9436329277690265,
-  "price_usd": 2316.7744323728953,
+  "weight_kg": 2.0401776873677546,
+  "price_usd": 3062.5670299026624,
   "release_year": 2017,
-  "updated_at": "2024-06-08T05:45:54.951452310Z"
+  "updated_at": "2024-06-10T07:47:30.992888373Z"
 }
