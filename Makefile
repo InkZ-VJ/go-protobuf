@@ -15,3 +15,6 @@ client:
 
 test:
 	go test -cover ./...
+
+evans:
+	evans -r repl -p 8080
