@@ -20,12 +20,14 @@ type LaptopServer struct {
 	pb.UnimplementedLaptopServiceServer
 	laptopStore LaptopStore
 	imageStore  ImageStore
+	ratingStore RatingStore
 }
 
-func NewLaptopServer(store LaptopStore, imageStore ImageStore) *LaptopServer {
+func NewLaptopServer(store LaptopStore, imageStore ImageStore, ratingStore RatingStore) *LaptopServer {
 	return &LaptopServer{
 		laptopStore: store,
 		imageStore:  imageStore,
+		ratingStore: ratingStore,
 	}
 }
 
@@ -45,6 +47,9 @@ func (server *LaptopServer) CreateLaptop(ctx context.Context, req *pb.CreateLapt
 		}
 		laptop.Id = id.String()
 	}
+
+	// test timeout
+	// time.Sleep(6 * time.Second)
 
 	if ctx.Err() == context.Canceled {
 		log.Print("request is canceled")
@@ -167,6 +172,53 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	}
 
 	log.Printf("saved image with id: %s, size: %d", imageID, imageSize)
+	return nil
+}
+
+func (server *LaptopServer) RateLaptop(stream pb.LaptopService_RateLaptopServer) error {
+	for {
+		err := contextError(stream.Context())
+		if err != nil {
+			return err
+		}
+
+		req, err := stream.Recv()
+		if err == io.EOF {
+			log.Print("no more data")
+			break
+		}
+		if err != nil {
+			return logError(status.Errorf(codes.Unknown, "cannot receive stream requset: %v", err))
+		}
+
+		laptopID := req.GetLaptopId()
+		score := req.GetScore()
+
+		log.Printf("received a rate-laptop request: id = %s, score = %.2f", laptopID, score)
+
+		found, err := server.laptopStore.Find(laptopID)
+		if err != nil {
+			return logError(status.Errorf(codes.Internal, "cannot find laptop: %v", err))
+		}
+		if found == nil {
+			return logError(status.Errorf(codes.NotFound, "laptopID %s is not found", laptopID))
+		}
+
+		rating, err := server.ratingStore.Add(laptopID, float64(score))
+		if err != nil {
+			return logError(status.Errorf(codes.Internal, "cannot add rating to the store: %v", err))
+		}
+		res := &pb.RateLaptopResponse{
+			LaptopId:     laptopID,
+			RatedCount:   rating.Count,
+			AverageScore: rating.Sum / float64(rating.Count),
+		}
+		err = stream.Send(res)
+		if err != nil {
+			return logError(status.Errorf(codes.Unknown, "cannot send stream serponse: %v", err))
+		}
+
+	}
 	return nil
 }
 
