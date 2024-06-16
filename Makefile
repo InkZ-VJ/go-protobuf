@@ -1,3 +1,5 @@
+.PHONY: client server test evans format_proto gen_proto
+
 gen_proto:
 	rm -f pb/*.go
 	protoc --proto_path=proto \
@@ -10,6 +12,7 @@ format_proto:
 
 server:
 	go run cmd/server/main.go --port 8080
+
 client:
 	go run cmd/client/main.go -address 0.0.0.0:8080
 
